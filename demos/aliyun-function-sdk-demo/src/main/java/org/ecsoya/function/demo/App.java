@@ -23,9 +23,6 @@ import com.aliyuncs.fc.response.ListFunctionsResponse;
 import com.aliyuncs.fc.response.ListServicesResponse;
 
 public class App {
-	private static final String ACCESS_KEY = "LTAIAL4EHsgmAsy0";
-	private static final String ACCESS_SECRET = "wlHWLUvnRNPlXYdNteuL4WWQC5Jr1z";
-	private static final String ACCOUNT_ID = "1752332840987097";
 	private static final String REGION = "cn-shanghai";
 	private static final String SERVICE_NAME = "spring-cloud-function";
 	private static final String FUNCTION_NAME = "demo";
@@ -34,9 +31,13 @@ public class App {
 
 	public static void main(final String[] args) throws IOException {
 
+		String accessKey = System.getenv("ACCESS_KEY");
+		String accessSecret = System.getenv("ACCESS_SECRET");
+		String accountId = System.getenv("ACCOUNT_ID");
+
 		// Initialize FC client
-		FunctionComputeClient fcClient = new FunctionComputeClient(REGION, ACCOUNT_ID, ACCESS_KEY, ACCESS_SECRET);
-		
+		FunctionComputeClient fcClient = new FunctionComputeClient(REGION, accountId, accessKey, accessSecret);
+
 		// Use the jar with 'fc' suffix.
 		File codeJar = new File(
 				"../spring-cloud-function-aliyun-demo/target/spring-cloud-function-aliyun-demo-1.0.0-SNAPSHOT-fc.jar");
