@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.cloud.function.context.FunctionCatalog;
+import org.springframework.cloud.function.context.FunctionalSpringApplication;
 import org.springframework.cloud.function.context.catalog.FunctionInspector;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.ClassUtils;
@@ -107,7 +108,7 @@ public class SpringFunctionInitializer implements Closeable {
 
 	private SpringApplication springApplication() {
 		Class<?> sourceClass = configurationClass;
-		SpringApplication application = new org.springframework.cloud.function.context.SpringApplication(sourceClass);
+		SpringApplication application = new FunctionalSpringApplication(sourceClass);
 		application.setWebApplicationType(WebApplicationType.NONE);
 		return application;
 	}
